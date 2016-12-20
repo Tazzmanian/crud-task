@@ -5,9 +5,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> CRUB </title>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
 </head>
 <body>
     <h2>Simple CRUD</h2>
+    <table border-width="1px">
+	    <thead>
+	    	<tr>
+	    		<th>First name</th>
+	    		<th>Last name</th>
+	    		<th>Date of birth</th>
+	    		<th>email</th>
+	    		<th>Phone number</th>
+	    		<th>edit</th>
+	    		<th>delete</th>
+	    	</tr>
+	    </thead>
+    	<tbody>
+    		<tr>
+    			<td>1</td>
+    			<td>2</td>
+    			<td>3</td>
+    			<td>4</td>
+    			<td>5</td>
+    			<td>6</td>
+    			<td>7</td>
+    		</tr>
+    	</tbody>
+    </table>
     
     <form action="/index.html">
         <fieldset>

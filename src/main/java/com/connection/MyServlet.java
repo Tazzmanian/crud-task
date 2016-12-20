@@ -12,27 +12,10 @@ import db.connection.DBConnection;
 
 
 @WebServlet(urlPatterns = "/index.html")
-public class Servlet  extends HttpServlet {
-	
+public class MyServlet  extends HttpServlet {	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) 
 					throws ServletException, IOException {
-		/*
-		PrintWriter writer = response.getWriter();
-		writer.println("<html>");
-		writer.println("<head>");
-		writer.println("<title>Yahoo!!!!!!!!</title>");
-		writer.println("</head>");
-		writer.println("<body>");
-		writer.println("My First Servlet");
-		writer.println("</body>");
-		writer.println("</html>"); */
-		
-		//String name = request.getParameter("name");
-		
-		//request.setAttribute("name", name);
-		
-		//System.out.println(name);
 		
 		DBConnection dbcon = new DBConnection();
 		dbcon.getAllDataUnsorted();
@@ -40,10 +23,4 @@ public class Servlet  extends HttpServlet {
 		
 		request.getRequestDispatcher("/WEB-INF/views/simple.jsp").forward(request, response);
 	}
-
-	/*public static void main(String arg[]){
-		DBConnection dbcon = new DBConnection();
-		dbcon.getAllDataUnsorted();
-		dbcon.closeConnection();
-	}*/
 }

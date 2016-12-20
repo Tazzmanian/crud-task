@@ -18,7 +18,6 @@ The fields that have to be filled are:
 
 
 TODO:
-* change `grud` to `crud` project name
 * Visualize a table with the table content.
 * Create button that visualizes the fields with submit `add`.
 * Every row should have edit and delete button.
