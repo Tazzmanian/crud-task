@@ -32,8 +32,8 @@ public class MyServlet  extends HttpServlet {
 								+ "<td>" + res.getDate(3) + "</td>"
 								+ "<td>" + res.getString(4) + "</td>"
 								+ "<td>" + res.getString(5) + "</td>"
-								+ "<td>edit</td>"
-								+ "<td>delete</td>"
+								+ "<td><input type=\"submit\" value=\"edit\" name=\"edit" + res.getInt(6) + "\"></td>"
+								+ "<td><input type=\"submit\" value=\"delete\" name=\"delete" + res.getInt(6) + "\"></td>"
 								+ "</tr>";
 				tableContent.add(temp);						
 			}
