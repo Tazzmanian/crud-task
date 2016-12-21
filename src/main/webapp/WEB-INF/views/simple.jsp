@@ -47,7 +47,7 @@ table, th, td {
             <input type="email" name="email" value=""><br>
             Phone Number:<br>
             <input type="text" name="number" value=""><br>
-            <input type="submit" value="Add">
+            <input type="submit" value=${addEditValue} name=${addEditName}>
         </fieldset>
     </form> 
 </body>
