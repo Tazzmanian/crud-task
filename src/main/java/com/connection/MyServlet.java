@@ -46,7 +46,7 @@ public class MyServlet  extends HttpServlet {
 				
 				if(rowData.validationError() == null) {
 					request.setAttribute("errMsg", "");
-					dbcon.AddPerson(request.getParameter("firstname"),
+					dbcon.addPerson(request.getParameter("firstname"),
 									request.getParameter("lastname"),
 									request.getParameter("birthdate"), 
 									request.getParameter("email"), 
@@ -64,12 +64,57 @@ public class MyServlet  extends HttpServlet {
 				
 				System.out.println("add");
 			} else if(paramName.matches("^edit[0-9]+$")) {
+				// only read and fill the fields and set the button
+				// TODO: Select
+				ResultSet res = dbcon.getPersonByID(paramName.replaceAll("\\D+", ""));
+				
+				try {
+					res.next();
+					request.setAttribute("firstname", res.getString(1));
+					request.setAttribute("lastname", res.getString(2));
+					request.setAttribute("birthdate", res.getDate(3));
+					request.setAttribute("number", res.getString(4));
+					request.setAttribute("email", res.getString(5));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				request.setAttribute("addEditValue", "Edit");
-				request.setAttribute("addEditName", paramName);
-				// TODO: fill the fields
+				request.setAttribute("addEditName", ("change" + paramName.replaceAll("\\D+", "")));
 				System.out.println("edit");
+			} else if(paramName.matches("^change[0-9]+$")) {
+				// change person's info
+				RowData rowData = new RowData();
+				rowData.validateInput(request.getParameter("firstname"),
+									  request.getParameter("lastname"), 
+									  request.getParameter("birthdate"), 
+									  request.getParameter("number"), 
+									  request.getParameter("email"));
+				
+				if(rowData.validationError() == null) {
+					request.setAttribute("errMsg", "");
+					dbcon.editPerson(request.getParameter("firstname"),
+									request.getParameter("lastname"),
+									request.getParameter("birthdate"), 
+									request.getParameter("email"), 
+									request.getParameter("number"),
+									paramName.replaceAll("\\D+", ""));
+					// TODO: params are in  the url after this. Need to remove them
+				} else {
+					request.setAttribute("errMsg", rowData.validationError());
+					//System.out.println(rowData.validationError());
+					request.setAttribute("firstname", request.getParameter("firstname"));
+					request.setAttribute("lastname", request.getParameter("lastname"));
+					request.setAttribute("birthdate", request.getParameter("birthdate"));
+					request.setAttribute("number", request.getParameter("number"));
+					request.setAttribute("email", request.getParameter("email"));
+					request.setAttribute("addEditValue", "Edit");
+					request.setAttribute("addEditName", paramName);
+				}
 			} else if(paramName.matches("^delete[0-9]+$")) {
 				// TODO: delete the person
+				dbcon.deletePerson(paramName.replaceAll("\\D+", ""));
 				System.out.println("delete");
 			}
 	    }

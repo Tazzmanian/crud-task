@@ -36,7 +36,19 @@ public class DBConnection {
 		return rs;
 	}
 	
-	public void AddPerson(String firstName,
+	public ResultSet getPersonByID(String id){
+		try {
+			rs = stmt.executeQuery("SELECT * FROM person WHERE id=" + id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		//System.out.println(result);
+		
+		return rs;
+	}
+	
+	public void addPerson(String firstName,
 						String lastName,
 						String date,
 						String email,
@@ -56,6 +68,38 @@ public class DBConnection {
 			e.printStackTrace();
 		}
 	}
+	
+	public void editPerson(String firstName,
+			String lastName,
+			String date,
+			String email,
+			String phone,
+			String id) {
+
+		try {
+			//stmt.executeUpdate("UPDATE person SET first_name='test', last_name='test1', birth_date='1921-12-01', phone='1238976321', email='test@test1.com' WHERE id=1");
+			stmt.executeUpdate("UPDATE person "
+					+ "SET first_name='" + firstName +"', "
+					+ "last_name='" + lastName + "', "
+					+ "birth_date='" + date + "', "
+					+ "phone='" + phone + "', "
+					+ "email='" + email + "' "
+					+ "WHERE id=" + id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void deletePerson(String id) {
+		try {
+			stmt.executeUpdate("DELETE FROM person WHERE id=" + id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void closeConnection() {
 		try{
@@ -68,7 +112,8 @@ public class DBConnection {
 	public static void main(String arg[]){
 		DBConnection dbcon = new DBConnection();
 		//dbcon.getAllDataUnsorted();
-		dbcon.AddPerson("test", "test", "1978-12-12", "email@eamil.com", "0123456789");
+		//dbcon.EditPerson("test", "test", "1978-12-12", "email@eamil.com", "0123456789", "3");
+		dbcon.deletePerson("1");
 		dbcon.closeConnection();
 	}
 }

@@ -15,6 +15,8 @@ table, th, td {
 <body>
     <h2>Simple CRUD</h2>
     <form action="/index.html">
+        <input type="text" name="search">
+        <input type="submit" value="search"><br>
         <table border-width="1px">
     	    <thead>
     	    	<tr>
