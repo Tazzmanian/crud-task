@@ -25,6 +25,7 @@ public class MyServlet  extends HttpServlet {
 		DBConnection dbcon = new DBConnection();
 		
 		List<String> tableContent = new ArrayList<String>();
+		boolean search = false;
 		
 		Enumeration<String> params = request.getParameterNames();
 		request.setAttribute("addEditValue", "Add");
@@ -114,17 +115,22 @@ public class MyServlet  extends HttpServlet {
 				// TODO: delete the person
 				dbcon.deletePerson(paramName.replaceAll("\\D+", ""));
 				System.out.println("delete");
-			} else if(paramName.matches("search")) {
-				// TODO: should make 2 combobox for last name and date of birth with 3 values "", "a-z", "z-a"
+			} else if(paramName.matches("searchBtn")) {
 				//System.out.println(request.getParameter("sortLastName"));
 				//System.out.println(request.getParameter("sortDate"));
+				search = true;
+				request.setAttribute("searchTxt",request.getParameter("searchTxt"));
+				//request.setAttribute("sortLastName",request.getParameter("sortLastName"));
+				//request.setAttribute("sortDate",request.getParameter("sortDate"));
 			}
 	    }
 		
 		ResultSet res;
 		
-		if(false){
-			
+		if(search){
+			res = dbcon.search(request.getParameter("searchTxt"), 
+					request.getParameter("sortLastName"),
+					request.getParameter("sortDate"));
 		} else {
 			res = dbcon.getAllDataUnsorted();
 		}

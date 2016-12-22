@@ -17,7 +17,7 @@ table, th, td {
     <form action="/index.html">
         <fieldset>
         <legend>Search</legend>
-            <input type="text" name="search">
+            <input type="text" name="searchTxt" value=${searchTxt}>
             
             <select name="sortLastName">
                 <option value="non">Sort by last name</option>
@@ -29,7 +29,7 @@ table, th, td {
                 <option value="asc">a-z</option>
                 <option value="des">z-a</option>
             </select>
-            <input type="submit" value="search">
+            <input type="submit" value="search" name="searchBtn">
         </fieldset>
         <table border-width="1px">
     	    <thead>

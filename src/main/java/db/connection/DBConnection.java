@@ -48,19 +48,46 @@ public class DBConnection {
 		return rs;
 	}
 	
-	public ResultSet search(String str){
+	public ResultSet search(String str, String sortLastName, String sortDate){
+		boolean comma = false;
+		String query = "SELECT * FROM person WHERE first_name LIKE '%" + str + "%' "
+				+ "OR last_name LIKE '%" + str + "%' "
+				+ "OR birth_date LIKE '%" + str + "%' "
+				+ "OR email LIKE '%" + str + "%' "
+				+ "OR phone LIKE '%" + str + "%' ";
+		
+		if(!sortLastName.matches("non") || !sortDate.matches("non")) {
+			query += "ORDER BY";
+		}
+		
+		if(sortLastName.matches("asc")) {
+			query += " last_name ASC";
+			comma = true;
+		} else if (sortLastName.matches("des")) {
+			query += " last_name DESC";
+			comma = true;
+		}
+		
+		if(sortDate.matches("asc")) {
+			query = comma ? (query + ",") : query;
+			query += " birth_date ASC";
+			comma = true;
+		} else if (sortDate.matches("des")) {
+			query = comma ? (query + ",") : query;
+			query += " birth_date DESC";
+			comma = true;
+		}
+		
+		System.out.println(query);
+		
 		try {
-			rs = stmt.executeQuery("SELECT * FROM person WHERE first_name LIKE '%" + str + "%'"
-					+ "OR last_name LIKE '%" + str + "%'"
-					+ "OR birth_date LIKE '%" + str + "%'"
-					+ "OR email LIKE '%" + str + "%'"
-					+ "OR phone LIKE '%" + str + "%'");
-			while(rs.next()){
-				System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getDate(3) 
-						+ " " + rs.getString(4) + " " + rs.getString(5));
+			rs = stmt.executeQuery(query);
+			//while(rs.next()){
+			//	System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getDate(3) 
+			//			+ " " + rs.getString(4) + " " + rs.getString(5));
 				//RowData temp = new RowData(rs.getString(1), rs.getString(2), rs.getString(3),
 				//		rs.getString(4), rs.getString(5), rs.getInt(6));
-			}
+			//}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -136,7 +163,7 @@ public class DBConnection {
 		//dbcon.getAllDataUnsorted();
 		//dbcon.EditPerson("test", "test", "1978-12-12", "email@eamil.com", "0123456789", "3");
 		//dbcon.deletePerson("1");
-		dbcon.search("0123");
+		dbcon.search("0123", "", "");
 		dbcon.closeConnection();
 	}
 }
