@@ -20,18 +20,9 @@ public class DBConnection {
 	public ResultSet getAllDataUnsorted(){
 		try {
 			rs = stmt.executeQuery("select * from person");
-			
-			//while(rs.next()){
-				//System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getDate(3) 
-				//		+ " " + rs.getString(4) + " " + rs.getString(5));
-				//RowData temp = new RowData(rs.getString(1), rs.getString(2), rs.getString(3),
-				//		rs.getString(4), rs.getString(5), rs.getInt(6));
-			//}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		//System.out.println(result);
 		
 		return rs;
 	}
@@ -42,8 +33,6 @@ public class DBConnection {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		//System.out.println(result);
 		
 		return rs;
 	}
@@ -82,17 +71,10 @@ public class DBConnection {
 		
 		try {
 			rs = stmt.executeQuery(query);
-			//while(rs.next()){
-			//	System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getDate(3) 
-			//			+ " " + rs.getString(4) + " " + rs.getString(5));
-				//RowData temp = new RowData(rs.getString(1), rs.getString(2), rs.getString(3),
-				//		rs.getString(4), rs.getString(5), rs.getInt(6));
-			//}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		//System.out.println(result);
 		
 		return rs;
 	}
@@ -110,8 +92,7 @@ public class DBConnection {
 										+ date + "','"
 										+ phone +"','"
 										+ email + "')");
-			//stmt.executeUpdate("INSERT INTO person(first_name, last_name, birth_date, phone, email) "
-			//		+ "VALUE('test','test','1999-12-12','0123456789','test@test.test')");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,7 +107,6 @@ public class DBConnection {
 			String id) {
 
 		try {
-			//stmt.executeUpdate("UPDATE person SET first_name='test', last_name='test1', birth_date='1921-12-01', phone='1238976321', email='test@test1.com' WHERE id=1");
 			stmt.executeUpdate("UPDATE person "
 					+ "SET first_name='" + firstName +"', "
 					+ "last_name='" + lastName + "', "
