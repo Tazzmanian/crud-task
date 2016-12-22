@@ -32,7 +32,7 @@ public class MyServlet  extends HttpServlet {
 		request.setAttribute("addEditName", "add");
 		while (params.hasMoreElements()) {
 			String paramName = params.nextElement();
-			// TODO: add/edit/update delete
+
 			if(paramName.matches("add")) {
 				request.setAttribute("addEditValue", "Add");
 				request.setAttribute("addEditName", "add");
@@ -53,7 +53,6 @@ public class MyServlet  extends HttpServlet {
 					// TODO: params are in  the url after this. Need to remove them
 				} else {
 					request.setAttribute("errMsg", rowData.validationError());
-					//System.out.println(rowData.validationError());
 					request.setAttribute("firstname", request.getParameter("firstname"));
 					request.setAttribute("lastname", request.getParameter("lastname"));
 					request.setAttribute("birthdate", request.getParameter("birthdate"));
@@ -63,8 +62,6 @@ public class MyServlet  extends HttpServlet {
 				
 				System.out.println("add");
 			} else if(paramName.matches("^edit[0-9]+$")) {
-				// only read and fill the fields and set the button
-				// TODO: Select
 				ResultSet res = dbcon.getPersonByID(paramName.replaceAll("\\D+", ""));
 				
 				try {
@@ -102,7 +99,6 @@ public class MyServlet  extends HttpServlet {
 					// TODO: params are in  the url after this. Need to remove them
 				} else {
 					request.setAttribute("errMsg", rowData.validationError());
-					//System.out.println(rowData.validationError());
 					request.setAttribute("firstname", request.getParameter("firstname"));
 					request.setAttribute("lastname", request.getParameter("lastname"));
 					request.setAttribute("birthdate", request.getParameter("birthdate"));
@@ -112,16 +108,11 @@ public class MyServlet  extends HttpServlet {
 					request.setAttribute("addEditName", paramName);
 				}
 			} else if(paramName.matches("^delete[0-9]+$")) {
-				// TODO: delete the person
 				dbcon.deletePerson(paramName.replaceAll("\\D+", ""));
 				System.out.println("delete");
 			} else if(paramName.matches("searchBtn")) {
-				//System.out.println(request.getParameter("sortLastName"));
-				//System.out.println(request.getParameter("sortDate"));
 				search = true;
 				request.setAttribute("searchTxt",request.getParameter("searchTxt"));
-				//request.setAttribute("sortLastName",request.getParameter("sortLastName"));
-				//request.setAttribute("sortDate",request.getParameter("sortDate"));
 			}
 	    }
 		
@@ -153,7 +144,7 @@ public class MyServlet  extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("tableContent", tableContent);		
-		//dbcon.closeConnection();
+		dbcon.closeConnection();
 		
 		request.getRequestDispatcher("/WEB-INF/views/simple.jsp").forward(request, response);
 	}
