@@ -37,16 +37,17 @@ table, th, td {
     
         <fieldset>
             <legend>People's information:</legend>
+            <p style="color:red">${errMsg}</p>
             First name:<br>
-            <input type="text" name="firstname" value=""><br>
+            <input type="text" name="firstname" value=${firstname}><br>
             Last name:<br>
-            <input type="text" name="lastname" value=""><br>
+            <input type="text" name="lastname" value=${lastname}><br>
             Date of Birth (YYYY-MM-DD):<br>
-            <input type="date" name="birthdate" value=""><br>
+            <input type="date" name="birthdate" value=${birthdate}><br>
             E-mail Address:<br>
-            <input type="email" name="email" value=""><br>
+            <input type="email" name="email" value=${email}><br>
             Phone Number:<br>
-            <input type="text" name="number" value=""><br>
+            <input type="text" name="number" value=${number}><br><br>
             <input type="submit" value=${addEditValue} name=${addEditName}>
         </fieldset>
     </form> 

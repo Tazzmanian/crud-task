@@ -75,10 +75,6 @@ public class RowData {
 	}
 	
 	public String validationError(){
-		if (this.errMsg == null) {
-			return "";
-		}
-		
 		return this.errMsg;
 	}
 	
