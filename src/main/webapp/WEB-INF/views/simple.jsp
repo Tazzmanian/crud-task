@@ -15,16 +15,30 @@ table, th, td {
 <body>
     <h2>Simple CRUD</h2>
     <form action="/index.html">
-        <input type="text" name="search">
-        <input type="submit" value="search"><br>
+        <fieldset>
+        <legend>Search</legend>
+            <input type="text" name="search">
+            
+            <select name="sortLastName">
+                <option value="non">Sort by last name</option>
+                <option value="asc">a-z</option>
+                <option value="des">z-a</option>
+            </select>
+            <select name="sortDate">
+                <option value="non">Sort by date of birth</option>
+                <option value="asc">a-z</option>
+                <option value="des">z-a</option>
+            </select>
+            <input type="submit" value="search">
+        </fieldset>
         <table border-width="1px">
     	    <thead>
     	    	<tr>
     	    		<th>First name</th>
     	    		<th>Last name</th>
     	    		<th>Date of birth</th>
-    	    		<th>email</th>
     	    		<th>Phone number</th>
+    	    		<th>email</th>
     	    		<th>edit</th>
     	    		<th>delete</th>
     	    	</tr>

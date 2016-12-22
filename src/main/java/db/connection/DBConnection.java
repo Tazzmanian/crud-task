@@ -48,6 +48,28 @@ public class DBConnection {
 		return rs;
 	}
 	
+	public ResultSet search(String str){
+		try {
+			rs = stmt.executeQuery("SELECT * FROM person WHERE first_name LIKE '%" + str + "%'"
+					+ "OR last_name LIKE '%" + str + "%'"
+					+ "OR birth_date LIKE '%" + str + "%'"
+					+ "OR email LIKE '%" + str + "%'"
+					+ "OR phone LIKE '%" + str + "%'");
+			while(rs.next()){
+				System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getDate(3) 
+						+ " " + rs.getString(4) + " " + rs.getString(5));
+				//RowData temp = new RowData(rs.getString(1), rs.getString(2), rs.getString(3),
+				//		rs.getString(4), rs.getString(5), rs.getInt(6));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		//System.out.println(result);
+		
+		return rs;
+	}
+	
 	public void addPerson(String firstName,
 						String lastName,
 						String date,
@@ -113,7 +135,8 @@ public class DBConnection {
 		DBConnection dbcon = new DBConnection();
 		//dbcon.getAllDataUnsorted();
 		//dbcon.EditPerson("test", "test", "1978-12-12", "email@eamil.com", "0123456789", "3");
-		dbcon.deletePerson("1");
+		//dbcon.deletePerson("1");
+		dbcon.search("0123");
 		dbcon.closeConnection();
 	}
 }

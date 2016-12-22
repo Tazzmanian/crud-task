@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import row.data.RowData;
 import db.connection.DBConnection;
@@ -116,10 +114,20 @@ public class MyServlet  extends HttpServlet {
 				// TODO: delete the person
 				dbcon.deletePerson(paramName.replaceAll("\\D+", ""));
 				System.out.println("delete");
+			} else if(paramName.matches("search")) {
+				// TODO: should make 2 combobox for last name and date of birth with 3 values "", "a-z", "z-a"
+				//System.out.println(request.getParameter("sortLastName"));
+				//System.out.println(request.getParameter("sortDate"));
 			}
 	    }
 		
-		ResultSet res = dbcon.getAllDataUnsorted();
+		ResultSet res;
+		
+		if(false){
+			
+		} else {
+			res = dbcon.getAllDataUnsorted();
+		}
 		
 		try {
 			while(res.next()){
