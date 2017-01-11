@@ -16,6 +16,7 @@ The fields that have to be filled are:
 * Phone Number
 * E-mail Address
 
-The user should be able to search within the results and also to be able to sort them by Last Name and Date of Birth. 
+The user should be able to search within the
+ results and also to be able to sort them by Last Name and Date of Birth. 
 
 
