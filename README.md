@@ -20,3 +20,13 @@ The user should be able to search within the
  results and also to be able to sort them by Last Name and Date of Birth. 
 
 
+## Changes
+Use following technologies:
+* Spring Boot
+* Spring Data JPA
+with one of the following databases:
+* H2
+* HsQLDB
+
+After the changes the server is started with `spring-boot:run`.
+To see installed dependencies run `dependency:tree`.
