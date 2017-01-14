@@ -53,8 +53,8 @@ table, th, td {
 					<td>${person.birthDate}</td>
 					<td>${person.phone}</td>
 					<td>${person.email}</td>
-					<td>${person.email}</td>
-					<td>${person.email}</td>
+					<td><a href="edit?id=${person.id}">edit</a></td>
+					<td><a href="edit?id=${person.id}">delete</a></td>
 				</tr>
 			</c:forEach>
 
@@ -75,6 +75,17 @@ table, th, td {
 					<input type="submit" value="Add">
 				</form>
 			</c:when>
+			<c:when test="${mode == 'EDIT'}">
+                <form action="add">
+                    <input type="hidden" name="id" value="${person.id}"/>
+                    First name:<br> <input type="text" name="firstName" value="${person.firstName}"><br> 
+                    Last name:<br> <input type="text" name="lastName" value="${person.lastName}"> <br> 
+                    Date of Birth (YYYY-MM-DD):<br> <input type="text" name="birthDate" value="${person.birthDate}"> <br> 
+                    E-mail Address:<br> <input type="email" name="email" value="${person.email}"> <br> 
+                    Phone Number:<br> <input type="text" name="phone" value="${person.phone}"> <br> <br> 
+                    <input type="submit" value="Update">
+                </form>
+            </c:when>
 		</c:choose>
 	</fieldset>
 </body>

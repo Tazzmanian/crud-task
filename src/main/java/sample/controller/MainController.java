@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import sample.model.Person;
 import sample.service.PersonService;
@@ -32,7 +33,8 @@ public class MainController {
 			errMsg = errMsg + " Last name,";
 		}
 
-		if (person.getEmail() == null || !person.getEmail().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) {
+		if (person.getEmail() == null
+				|| !person.getEmail().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) {
 			errMsg = errMsg + " Email,";
 		}
 
@@ -40,7 +42,8 @@ public class MainController {
 			errMsg = errMsg + " Phone number,";
 		}
 
-		if (person.getBirthDate() == null || !person.getBirthDate().toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$")) {
+		if (person.getBirthDate() == null
+				|| !person.getBirthDate().toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$")) {
 			errMsg = errMsg + " Date of birth,";
 		}
 
@@ -49,7 +52,7 @@ public class MainController {
 		} else {
 			errMsg = "Error:" + errMsg;
 		}
-		
+
 		return errMsg;
 	}
 
@@ -59,14 +62,15 @@ public class MainController {
 		request.setAttribute("mode", "ADD");
 		return "index";
 	}
-	
+
 	@GetMapping("/add")
-	public String save(@ModelAttribute("person") Person person, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) {
+	public String save(@ModelAttribute("person") Person person, BindingResult bindingResult,
+			HttpServletRequest request) {
 		String msg = validateInput(person);
-		if(msg == "") {
+		if (msg == "") {
 			personService.save(person);
 			request.setAttribute("errMsg", "Saved!!!");
-			
+
 		} else {
 			request.setAttribute("errMsg", msg);
 			request.setAttribute("person", person);
@@ -74,6 +78,14 @@ public class MainController {
 
 		request.setAttribute("people", personService.findAll());
 		request.setAttribute("mode", "ADD");
+		return "index";
+	}
+
+	@GetMapping("/edit")
+	public String edit(@RequestParam int id, HttpServletRequest request) {
+		request.setAttribute("person", personService.findPerson(id));
+		request.setAttribute("mode", "EDIT");
+		request.setAttribute("people", personService.findAll());
 		return "index";
 	}
 }

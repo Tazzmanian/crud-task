@@ -31,4 +31,8 @@ public class PersonService {
 	public void save(Person person) {
 		personRepository.save(person);
 	}
+	
+	public Person findPerson(int id) {
+		return personRepository.findOne(id);
+	}
 }
