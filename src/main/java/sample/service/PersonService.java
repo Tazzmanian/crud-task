@@ -35,4 +35,8 @@ public class PersonService {
 	public Person findPerson(int id) {
 		return personRepository.findOne(id);
 	}
+	
+	public void delete(int id) {
+		personRepository.delete(id);
+	}
 }

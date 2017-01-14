@@ -88,4 +88,12 @@ public class MainController {
 		request.setAttribute("people", personService.findAll());
 		return "index";
 	}
+	
+	@GetMapping("/delete")
+	public String delete(@RequestParam int id, HttpServletRequest request) {
+		personService.delete(id);
+		request.setAttribute("mode", "ADD");
+		request.setAttribute("people", personService.findAll());
+		return "index";
+	}
 }

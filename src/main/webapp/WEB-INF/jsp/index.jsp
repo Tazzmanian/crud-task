@@ -54,7 +54,7 @@ table, th, td {
 					<td>${person.phone}</td>
 					<td>${person.email}</td>
 					<td><a href="edit?id=${person.id}">edit</a></td>
-					<td><a href="edit?id=${person.id}">delete</a></td>
+					<td><a href="delete?id=${person.id}">delete</a></td>
 				</tr>
 			</c:forEach>
 
