@@ -27,4 +27,8 @@ public class PersonService {
 		}
 		return people;
 }
+
+	public void save(Person person) {
+		personRepository.save(person);
+	}
 }

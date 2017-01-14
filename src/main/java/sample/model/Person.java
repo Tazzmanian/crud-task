@@ -1,11 +1,17 @@
 package sample.model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name="person")
 public class Person {
@@ -15,7 +21,7 @@ public class Person {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private Date birthDate;
+	private String birthDate;
 	private String email;
 	private String phone;
 	
@@ -23,8 +29,7 @@ public class Person {
 		// default is needed
 	}
 
-	public Person(String firstName, String lastName, Date birthDate, String email, String phone) {
-		super();
+	public Person(String firstName, String lastName, String birthDate, String email, String phone) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
@@ -56,11 +61,11 @@ public class Person {
 		this.lastName = lastName;
 	}
 
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 
