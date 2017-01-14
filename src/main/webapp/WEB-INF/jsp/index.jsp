@@ -17,7 +17,7 @@ table, th, td {
 </head>
 <body>
 	<h2>Simple CRUD</h2>
-	<form action="/index.html">
+	<form action="search">
 		<fieldset>
 			<legend>Search</legend>
 			<input type="text" name="searchTxt" value="${searchTxt}"> <select

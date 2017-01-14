@@ -1,5 +1,6 @@
 package sample.model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name="person")
-public class Person {
+public class Person implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

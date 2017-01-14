@@ -96,4 +96,13 @@ public class MainController {
 		request.setAttribute("people", personService.findAll());
 		return "index";
 	}
+	
+	@GetMapping("/search")
+	public String search(@RequestParam String searchTxt, HttpServletRequest request) {
+		System.out.println("search");
+		request.setAttribute("mode", "ADD");
+		request.setAttribute("people", personService.search(searchTxt));
+		return "index";
+	}
+	
 }
