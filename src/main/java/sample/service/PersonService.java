@@ -42,8 +42,45 @@ public class PersonService {
 		}
 	}
 
-	public List<Person> search(String str) {
-		//return personRepository.findById(Integer.parseInt(str));
-		return personRepository.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContaining(str, str, str, str, str);
+	public List<Person> search(String str, String sortLastName, String sortDate) {
+		// return personRepository.findById(Integer.parseInt(str));
+
+		if (sortLastName.matches("asc") && sortDate.matches("non")) {
+			return personRepository
+					.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContainingOrderByLastNameAsc(
+							str, str, str, str, str);
+		} else if (sortLastName.matches("des") && sortDate.matches("non")) {
+			return personRepository
+					.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContainingOrderByLastNameDesc(
+							str, str, str, str, str);
+		} else if (sortLastName.matches("non") && sortDate.matches("asc")) {
+			return personRepository
+					.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContainingOrderByBirthDateAsc(
+							str, str, str, str, str);
+		} else if (sortLastName.matches("non") && sortDate.matches("des")) {
+			return personRepository
+					.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContainingOrderByBirthDateDesc(
+							str, str, str, str, str);
+		} else if (sortLastName.matches("asc") && sortDate.matches("asc")) {
+			return personRepository
+					.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContainingOrderByLastNameAscBirthDateAsc(
+							str, str, str, str, str);
+		} else if (sortLastName.matches("asc") && sortDate.matches("des")) {
+			return personRepository
+					.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContainingOrderByLastNameAscBirthDateDesc(
+							str, str, str, str, str);
+		} else if (sortLastName.matches("des") && sortDate.matches("asc")) {
+			return personRepository
+					.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContainingOrderByLastNameDescBirthDateAsc(
+							str, str, str, str, str);
+		} else if (sortLastName.matches("des") && sortDate.matches("des")) {
+			return personRepository
+					.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContainingOrderByLastNameDescBirthDateDesc(
+							str, str, str, str, str);
+		}
+
+		return personRepository
+				.findByFirstNameContainingOrLastNameContainingOrBirthDateContainingOrEmailContainingOrPhoneContaining(
+						str, str, str, str, str);
 	}
 }

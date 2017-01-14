@@ -101,7 +101,7 @@ public class MainController {
 	public String search(@RequestParam String searchTxt, HttpServletRequest request) {
 		System.out.println("search");
 		request.setAttribute("mode", "ADD");
-		request.setAttribute("people", personService.search(searchTxt));
+		request.setAttribute("people", personService.search(searchTxt, request.getParameter("sortLastName"), request.getParameter("sortDate")));
 		return "index";
 	}
 	
