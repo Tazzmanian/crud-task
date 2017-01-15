@@ -28,5 +28,5 @@ with one of the following databases:
 * H2
 * HsQLDB
 
-After the changes the server is started with `spring-boot:run`.
+After the changes the server is started with `spring-boot:run` or Run the application.
 To see installed dependencies run `dependency:tree`.
